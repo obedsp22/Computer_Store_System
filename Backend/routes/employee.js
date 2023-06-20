@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let form = req.body;
-    let cmd = 'INSERT INTO employees';
+    let cmd = 'INSERT INTO employees SET ?';
     conn.query(cmd, form, (err, result) => {
         if(err) throw err;
         res.end();

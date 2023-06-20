@@ -59,51 +59,50 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                baseUrl: 'http://localhost:3000',
-                updId: 0,
-                employees: [],
-                form: {
-                    First_name: '',
-                    Last_name: '',
-                    DOB: '',
-                    Email: '',
-                },
-                isEmpty: true,
-                isEdit: false,
-            }
-        },
-        methods: {
-            async getEmployeeData() {
-                try {
-                    const response = await axios.get(`${this.baseURL}/employee/`);
-                    return response.data;
-                }
-                catch (error) {
-                    console.log(error);
-                }
+export default {
+    data() {
+        return {
+            baseUrl: 'http://localhost:3000',
+            updId: 0,
+            employees: [],
+            form: {
+                First_name: '',
+                Last_name: '',
+                DOB: '',
+                Email: '',
             },
-            addEmployee() {
-                let $this = this;
-                const eform = document.querySelector('form');
-                if(!eform.checkValidity()) {
-                    eform.reportValidity();
-                    eform.classList.add("was-validated");
-                    return;
-                }
-                
+            isEmpty: true,
+            isEdit: false,
+        }
+    },
+    methods: {
+        async getEmployeeData() {
+            try {
+                const response = await axios.get(`${this.baseURL}/employee/`);
+                return response.data;
+            }
+            catch (error) {
+                console.log(error);
             }
         },
-        mounted() {
-            this.getEmployeeData().then(data => {
+        addEmployee() {
+            let $this = this;
+            const eform = document.querySelector('form');
+            if (!eform.checkValidity()) {
+                eform.reportValidity();
+                eform.classList.add("was-validated");
+                return;
+            }
+        }
+    },
+    mounted() {
+        this.getEmployeeData().then(data => {
             this.employees = data;
             if (this.employees.length > 0)
                 this.isEmpty = false;
         }).catch(error => {
             console.log(error);
         });
-        }
     }
+}
 </script>
