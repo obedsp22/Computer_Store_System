@@ -40,10 +40,10 @@ router.get('/emplist', (req, res) => {
 
 router.post('/', (req, res) => {
     let form = req.body;
-    let cmd = 'INSERT INTO orders';
+    let cmd = 'INSERT INTO orders SET ?';
     conn.query(cmd, form, (err, result) => {
         if(err) throw err;
-        res.end();
+        res.json(result.insertId);
     });
 })
 

@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     let cmd = 'INSERT INTO employees SET ?';
     conn.query(cmd, form, (err, result) => {
         if(err) throw err;
-        res.end();
+        res.json(result.insertId);
     });
 });
 

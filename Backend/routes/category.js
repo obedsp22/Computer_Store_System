@@ -11,10 +11,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let form = req.body;
-    let cmd = 'INSERT INTO categories';
+    let cmd = 'INSERT INTO categories SET ?';
     conn.query(cmd, form, (err, result) => {
         if(err) throw err;
-        res.end();
+        res.json(result.insertId);
     });
 });
 
