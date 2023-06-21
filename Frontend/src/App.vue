@@ -19,3 +19,9 @@ export default {
 
   <Footer></Footer>
 </template>
+
+<style>
+main {
+  margin-bottom: 80px;
+}
+</style>

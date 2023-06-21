@@ -4,8 +4,8 @@ var router = express.Router();
 router.get('/', (req, res) => {
     let cmd = 
     `SELECT * FROM products p 
-     INNERJOIN categories c ON p.Category = c.CategoryId
-     INNERJOIN suppliers s ON p.Supplier = s.SupplierId`;
+     INNER JOIN categories c ON p.Category = c.CategoryId
+     INNER JOIN suppliers s ON p.Supplier = s.SupplierId`;
     conn.query(cmd, (err, result) => {
         if(err) throw err;
         res.json(result);

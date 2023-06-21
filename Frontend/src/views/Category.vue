@@ -4,7 +4,7 @@
             <form class="offset-sm-3 col-sm-6">
                 <div class="form-group">
                     <label>Name</label>
-                    <input v-model="form.Name" type="text" class="form-control" required>
+                    <input v-model="form.Cat_Name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group mt-3">
                     <label>Description</label>
@@ -30,7 +30,7 @@
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(c, i) in categories" :key="i"> 
                         <td>{{ c.CategoryId }}</td>
-                        <td>{{ c.Name }}</td>
+                        <td>{{ c.Cat_Name }}</td>
                         <td>{{ c.Description }}</td>
                         <td>
                             <button class="btn btn-warning" @click="editCategory(c)"><i
@@ -56,7 +56,7 @@ export default {
             updId: 0,
             categories: [],
             form: {
-                Name: '',
+                Cat_Name: '',
                 Description: '',
             },
             isEmpty: true,
@@ -85,7 +85,7 @@ export default {
                 .then(response => {
                     $this.categories.push({
                         CategoryId: response.data,
-                        Name: $this.form.Name,
+                        Cat_Name: $this.form.Cat_Name,
                         Description: $this.form.Description,
                     });
                     for (let i in $this.form) {
@@ -100,7 +100,7 @@ export default {
         },
         editCategory(cat) {
             this.isEdit = true;
-            this.form.Name = cat.Name;
+            this.form.Cat_Name = cat.Cat_Name;
             this.form.Description = cat.Description;
             this.updId = cat.CategoryId;
         },
@@ -118,7 +118,7 @@ export default {
                         if (response.status === 200) {
                             for (let i in $this.categories) {
                                 if ($this.categories[i].CategoryId === $this.updId) {
-                                    $this.categories[i].Name = $this.form.Name;
+                                    $this.categories[i].Cat_Name = $this.form.Cat_Name;
                                     $this.categories[i].Description = $this.form.Description;
                                 }
                             }

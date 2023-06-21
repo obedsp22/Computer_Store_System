@@ -20,7 +20,7 @@
                 </div>
                 <div class="mt-4 text-end">
                     <button class="btn btn-primary" v-if="!isEdit" @click.prevent="addEmployee">Add Employee</button>
-                    <button class="btn btn-primary ms-3" v-else @click="updateEmployee">Update Employee</button>
+                    <button class="btn btn-primary ms-3" v-else @click.prevent="updateEmployee">Update Employee</button>
                 </div>
             </form>
         </div>
@@ -46,7 +46,7 @@
                         <td>{{ e.Email }}</td>
                         <td>
                             <button class="btn btn-warning" @click="editEmployee(e)"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger ms-3" @click="deleteCustomer(e.EmployeeId)"><i class="bi bi-x-circle"></i></button>
+                            <button class="btn btn-danger ms-3" @click="deleteEmployee(e.EmployeeId, i)"><i class="bi bi-x-circle"></i></button>
                         </td>
                     </tr>
                     <tr v-else>
@@ -95,7 +95,6 @@ export default {
             }
             axios.post(`${this.baseUrl}/employee/`, this.form)
                 .then(response => {
-                    console.log(this.form);
                     $this.employees.push({
                         EmployeeId: response.data,
                         First_name: $this.form.First_name,
@@ -103,7 +102,6 @@ export default {
                         DOB: $this.form.DOB,
                         Email: $this.form.Email,
                     });
-                    console.log(this.form);
                     for (let i in $this.form) {
                         $this.form[i] = "";
                     }
@@ -120,7 +118,7 @@ export default {
             this.form.Last_name = employee.Last_name;
             this.form.DOB = employee.DOB;
             this.form.Email = employee.Email;
-            this.updId = employee.CustomerId;
+            this.updId = employee.EmployeeId;
         },
         updateEmployee() {
             let $this = this;
@@ -169,12 +167,15 @@ export default {
     },
     mounted() {
         this.getEmployeeData().then(data => {
+            for(let i in data) {
+                data[i].DOB = data[i].DOB.substring(0, 10);
+            }
             this.employees = data;
             if(this.employees.length > 0)
                 this.isEmpty = false;
         }).catch(error => {
             console.log(error);
         });
-    }
+    },
 }
 </script>

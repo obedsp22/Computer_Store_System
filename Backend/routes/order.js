@@ -5,9 +5,9 @@ var router = express.Router();
 router.get('/', (req, res) => {
     let cmd = 
     `SELECT * FROM orders o 
-     INNERJOIN shippers s ON o.Shipper = s.ShipperId
-     INNERJOIN customers c ON o.Customer = c.CustomerId
-     INNERJOIN employees e ON o.Employee = e.EmployeeId`;
+     INNER JOIN shippers s ON o.Shipper = s.ShipperId
+     INNER JOIN customers c ON o.Customer = c.CustomerId
+     INNER JOIN employees e ON o.Employee = e.EmployeeId`;
     conn.query(cmd, (err, result) => {
         if(err) throw err;
         res.json(result);

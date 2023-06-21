@@ -1,8 +1,6 @@
 <template>
     <footer>
-        <p>
             Copyright &copy; {{ year }}
-        </p>
     </footer>
 </template>
 
@@ -20,17 +18,14 @@ export default {
 </script>
 
 <style>
-    p {
+    footer {
         color: white;
         text-align: center;
-        padding: 16px;
-    }
-
-    footer {
         background-color: black;
         position: fixed;
         left: 0;
         bottom: 0;
+        padding: 15px;
         width: 100%;
     }
 </style>
