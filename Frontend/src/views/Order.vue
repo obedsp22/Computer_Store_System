@@ -170,14 +170,14 @@ export default {
                 axios.put(`${this.baseURL}/order/${this.updId}`, this.form)
                  .then(response => {
                     if(response.status === 200) {
-                        for(let i in $this.orders) {
-                            if($this.orders[i].OrderId === $this.updId) {
-                                $this.orders[i].Date = $this.form.Date;
-                                $this.orders[i].Shipper = $this.form.Shipper;
-                                $this.orders[i].Customer = $this.form.Customer;
-                                $this.orders[i].Employee = $this.form.Employee;
-                            }
-                        }
+                        // for(let i in $this.orders) {
+                        //     if($this.orders[i].OrderId === $this.updId) {
+                        //         $this.orders[i].Date = $this.form.Date;
+                        //         $this.orders[i].Shipper = $this.form.Shipper;
+                        //         $this.orders[i].Customer = $this.form.Customer;
+                        //         $this.orders[i].Employee = $this.form.Employee;
+                        //     }
+                        // }
                         for(let i in $this.form) {
                             $this.form[i] = "";
                         };

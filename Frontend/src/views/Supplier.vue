@@ -152,11 +152,11 @@
                             for(let i in $this.suppliers) {
                                 if($this.suppliers[i].SupplierId == $this.updId) {
                                     $this.suppliers[i].Sup_Name = $this.form.Sup_Name
-                                    $this.suppliers[i].Address = $this.form.Name;
-                                    $this.suppliers[i].City = $this.form.Name;
-                                    $this.suppliers[i].Zip = $this.form.Name;
-                                    $this.suppliers[i].Country = $this.form.Name;
-                                    $this.suppliers[i].Phone = $this.form.Name;
+                                    $this.suppliers[i].Address = $this.form.Address;
+                                    $this.suppliers[i].City = $this.form.City;
+                                    $this.suppliers[i].Zip = $this.form.Zip;
+                                    $this.suppliers[i].Country = $this.form.Country;
+                                    $this.suppliers[i].Phone = $this.form.Phone;
                                 }
                             }
                             for(let i in $this.form) {

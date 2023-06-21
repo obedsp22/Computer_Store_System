@@ -13,7 +13,7 @@
                 </div>
                 <div class="mt-4 text-end">
                     <button class="btn btn-primary" v-if="!isEdit" @click.prevent="addShipper">Add New Shipper</button>
-                    <button class="btn btn-primary ms-3" v-else @click.prevent="updateShipper">Update Shipper</button>
+                    <button class="btn btn-primary ms-3" v-else @click="updateShipper">Update Shipper</button>
                 </div>
             </form>
         </div>
@@ -113,12 +113,6 @@ export default {
                 axios.put(`${this.baseURL}/shipper/${this.updId}`, this.form)
                  .then(response => {
                     if(response.status === 200) {
-                        for(let i in $this.shippers) {
-                            if($this.shippers[i].ShipperId === $this.updId) {
-                                $this.shippers[i].Ship_Name = $this.form.Ship_Name;
-                                $this.shippers[i].Phone = $this.form.Phone;
-                            }
-                        }
                         for(let i in $this.form) {
                             $this.form[i] = "";
                         }

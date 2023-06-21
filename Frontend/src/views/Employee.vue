@@ -20,7 +20,7 @@
                 </div>
                 <div class="mt-4 text-end">
                     <button class="btn btn-primary" v-if="!isEdit" @click.prevent="addEmployee">Add Employee</button>
-                    <button class="btn btn-primary ms-3" v-else @click.prevent="updateEmployee">Update Employee</button>
+                    <button class="btn btn-primary ms-3" v-else @click="updateEmployee">Update Employee</button>
                 </div>
             </form>
         </div>
@@ -29,7 +29,6 @@
             <table class="table table-dark table-striped my-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>DOB</th>
@@ -39,7 +38,6 @@
                 </thead>
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(e, i) in employees" :key="i">
-                        <td>{{ e.EmployeeId }}</td>
                         <td>{{ e.First_name }}</td>
                         <td>{{ e.Last_name }}</td>
                         <td>{{ e.DOB }}</td>

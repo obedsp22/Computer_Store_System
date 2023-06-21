@@ -44,7 +44,6 @@
             <table class="table table-striped table-dark my-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>City</th>
@@ -56,7 +55,6 @@
                 </thead>
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(c, i) in customers" :key="i">
-                        <td>{{ c.CustomerId }}</td>
                         <td>{{ c.Fname }} {{ c.Lname }}</td>
                         <td>{{ c.Address }}</td>
                         <td>{{ c.City }}</td>
@@ -163,17 +161,17 @@ export default {
                 axios.put(`${this.baseURL}/customer/${this.updateId}`, this.form)
                  .then(response => {
                     if (response.status === 200) {
-                        for (let i in $this.customers) {
-                            if ($this.customers[i].CustomerId === $this.updateId) {
-                                $this.customers[i].Fname = $this.form.Fname;
-                                $this.customers[i].Lname = $this.form.Lname;
-                                $this.customers[i].Address = $this.form.Address;
-                                $this.customers[i].City = $this.form.City;
-                                $this.customers[i].Zip = $this.form.Zip;
-                                $this.customers[i].Country = $this.form.Country;
-                                $this.customers[i].Phone = $this.form.Phone;
-                            }
-                        }
+                        // for (let i in $this.customers) {
+                        //     if ($this.customers[i].CustomerId === $this.updateId) {
+                        //         $this.customers[i].Fname = $this.form.Fname;
+                        //         $this.customers[i].Lname = $this.form.Lname;
+                        //         $this.customers[i].Address = $this.form.Address;
+                        //         $this.customers[i].City = $this.form.City;
+                        //         $this.customers[i].Zip = $this.form.Zip;
+                        //         $this.customers[i].Country = $this.form.Country;
+                        //         $this.customers[i].Phone = $this.form.Phone;
+                        //     }
+                        // }
                         for (let i in $this.form) {
                             $this.form[i] = "";
                         }
