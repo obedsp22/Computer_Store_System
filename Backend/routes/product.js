@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
     `SELECT * FROM products p 
      INNER JOIN categories c ON p.Category = c.CategoryId
      INNER JOIN suppliers s ON p.Supplier = s.SupplierId`;
+
     conn.query(cmd, (err, result) => {
         if(err) throw err;
         res.json(result);
@@ -14,14 +15,14 @@ router.get('/', (req, res) => {
 
 
 router.get('/catlist', (req, res) => {
-    let cmd = 'SELECT * FROM categories';
+    let cmd_2 = 'SELECT * FROM categories';
     conn.query(cmd, (err, result) => {
         if(err) throw err;
         res.json(result);
     });
 });
 router.get('/suplist', (req, res) => {
-    let cmd = 'SELECT * FROM suppliers';
+    let cmd_3 = 'SELECT * FROM suppliers';
     conn.query(cmd, (err, result) => {
         if(err) throw err;
         res.json(result);

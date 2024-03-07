@@ -10,7 +10,7 @@
                     <label>Shipper</label>
                     <select class="form-control" v-model="form.Shipper" required>
                         <option value="">Choose a shipper</option>
-                        <option v-for="s in shippers" :value="s.ShipperId">{{ s.Ship_Name }}</option>
+                        <option v-for="s in shippers" :value="s.ShipperId">{{ s.Name }}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -48,7 +48,7 @@
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(o, i) in orders">
                         <td>{{ o.Date }}</td>
-                        <td>{{ o.Ship_Name }}</td>
+                        <td>{{ o.Name }}</td>
                         <td>{{ o.Fname }} {{ o.Lname }}</td>
                         <td>{{ o.First_name }} {{ o.Last_name }}</td>
                         <td>

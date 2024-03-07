@@ -13,7 +13,7 @@ export default {
 <template>
   <Navigation></Navigation>
 
-  <main>
+  <main style="margin: 0;">
     <router-view></router-view>
   </main>
 

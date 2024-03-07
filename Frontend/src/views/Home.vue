@@ -8,7 +8,7 @@
 #main {
     background: url('/public/images/laptop.jpg') no-repeat;
     background-size: cover;
-    height: 920px;
+    height: 100vh;
     position: relative;
 }
 

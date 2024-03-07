@@ -5,7 +5,7 @@
 
                 <div class="form-group">
                     <label>Name</label>
-                    <input v-model="form.Sup_Name" type="text" class="form-control" required>
+                    <input v-model="form.Name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Address</label>
@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(s,i) in suppliers" :key="i">
-                        <td>{{ s.Sup_Name }}</td>
+                        <td>{{ s.Name }}</td>
                         <td>{{ s.Address }}</td>
                         <td>{{ s.City }}</td>
                         <td>{{ s.Zip }}</td>
@@ -77,7 +77,7 @@
                 updId: 0,
                 suppliers: [],
                 form: {
-                    Sup_Name: '',
+                    Name: '',
                     Address: '',
                     City: '',
                     Zip: '',
@@ -110,7 +110,7 @@
                  .then(response => {
                     $this.suppliers.push({
                         SupplierId: response.data,
-                        Sup_Name: $this.form.Sup_Name,
+                        Name: $this.form.Name,
                         Address: $this.form.Address,
                         City: $this.form.City,
                         Zip: $this.form.Zip,
@@ -129,7 +129,7 @@
             },
             editSupplier(supp) {
                 this.isEdit = true;
-                this.form.Sup_Name = supp.Sup_Name;
+                this.form.Name = supp.Name;
                 this.form.Address = supp.Address;
                 this.form.City = supp.City;
                 this.form.Zip = supp.Zip;
@@ -151,7 +151,7 @@
                         if(response.status === 200) {
                             for(let i in $this.suppliers) {
                                 if($this.suppliers[i].SupplierId == $this.updId) {
-                                    $this.suppliers[i].Sup_Name = $this.form.Sup_Name
+                                    $this.suppliers[i].Name = $this.form.Name
                                     $this.suppliers[i].Address = $this.form.Address;
                                     $this.suppliers[i].City = $this.form.City;
                                     $this.suppliers[i].Zip = $this.form.Zip;

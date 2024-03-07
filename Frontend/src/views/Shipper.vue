@@ -4,7 +4,7 @@
             <form class="offset-sm-3 col-sm-6">
                 <div class="form-group">
                     <label>Name</label>
-                    <input v-model="form.Ship_Name" type="text" class="form-control" required>
+                    <input v-model="form.Name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
@@ -30,7 +30,7 @@
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(s, i) in shippers" :key="i">
                         <td>{{ s.ShipperId }}</td>
-                        <td>{{ s.Ship_Name }}</td>
+                        <td>{{ s.Name }}</td>
                         <td>{{ s.Phone }}</td>
                         <td>
                             <button class="btn btn-warning" @click="editShipper(s)"><i class="bi bi-pencil-square"></i></button>
@@ -54,7 +54,7 @@ export default {
             updId: 0,
             shippers: [],
             form: {
-                Ship_Name: '',
+                Name: '',
                 Phone: '',
             },
             isEmpty: true,
@@ -83,7 +83,7 @@ export default {
              .then(response => {
                 $this.shippers.push({
                     ShipperId: response.data,
-                    Ship_Name: $this.form.Ship_Name,
+                    Name: $this.form.Name,
                     Phone: $this.form.Phone,
                 });
                 for(let i in $this.form) {
@@ -97,7 +97,7 @@ export default {
         },
         editShipper(ship) {
             this.isEdit = true;
-            this.form.Ship_Name = ship.Ship_Name;
+            this.form.Name = ship.Name;
             this.form.Phone = ship.Phone;
             this.updId = ship.ShipperId;
         },

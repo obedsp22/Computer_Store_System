@@ -4,7 +4,7 @@
             <form class="offset-sm-3 col-sm-6">
                 <div class="form-group">
                     <label>Name</label>
-                    <input v-model="form.Prod_Name" type="text" class="form-control" required>
+                    <input v-model="form.Name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Unit</label>
@@ -18,14 +18,14 @@
                     <label>Category</label>
                     <select class="form-control" v-model="form.Category" required>
                         <option value="">Choose a category</option>
-                        <option v-for="c in categories" :value="c.CategoryId">{{ c.Cat_Name }}</option>
+                        <option v-for="c in categories" :value="c.CategoryId">{{ c.Name }}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Supplier</label>
                     <select class="form-control" v-model="form.Supplier" required>
                         <option value="">Choose a supplier</option>
-                        <option v-for="s in supplier" :value="s.SupplierId">{{ s.Sup_Name }}</option>
+                        <option v-for="s in supplier" :value="s.SupplierId">{{ s.Name }}</option>
                     </select>
                 </div>
                 <div class="text-end mt-4">
@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                     <tr v-if="!isEmpty" v-for="(p, i) in products" :key="i">
-                        <td>{{ p.Prod_Name }}</td>
+                        <td>{{ p.Name }}</td>
                         <td>{{ p.Unit }}</td>
                         <td>{{ p.Price }}</td>
                         <td>{{ p.Cat_Name }}</td>
@@ -80,7 +80,7 @@ export default {
             supplier: [],
             products: [],
             form: {
-                Prod_Name: '',
+                Name: '',
                 Unit: 0,
                 Price: 0,
                 Category: '',
@@ -93,7 +93,7 @@ export default {
     methods: {
         async getCategoryData() {
             try {
-                const response = await axios.get(`${this.baseURL}/product/catlist/`);
+                const response = await axios.get(`${this.baseURL}/category/`);
                 return response.data;
             } catch (err) {
                 console.log(err);
@@ -101,7 +101,7 @@ export default {
         },
         async getSupplierData() {
             try {
-                const response = await axios.get(`${this.baseURL}/product/suplist/`);
+                const response = await axios.get(`${this.baseURL}/supplier/`);
                 return response.data;
             } catch (err) {
                 console.log(err);
@@ -131,7 +131,7 @@ export default {
                 .then(response => {
                     $this.products.push({
                         ProductId: response.data,
-                        Prod_Name: $this.form.Prod_Name,
+                        Name: $this.form.Name,
                         Unit: $this.form.Unit,
                         Price: $this.form.Price,
                         Category: $this.form.Category,
@@ -154,7 +154,7 @@ export default {
         },
         editProduct(prod) {
             this.isEdit = true;
-            this.form.Prod_Name = prod.Prod_Name;
+            this.form.Name = prod.Name;
             this.form.Unit = prod.Unit;
             this.form.Price = prod.Price;
             this.form.Category = prod.Category;
@@ -179,7 +179,7 @@ export default {
                         if (response.status === 200) {
                             for (let i in $this.products) {
                                 if ($this.products[i].ProductId === $this.updId) {
-                                    $this.products[i].Prod_Name = $this.form.Prod_Name;
+                                    $this.products[i].Name = $this.form.Name;
                                     $this.products[i].Unit = $this.form.Unit;
                                     $this.products[i].Price = $this.form.Price;
                                     $this.products[i].Category = $this.form.Category;
